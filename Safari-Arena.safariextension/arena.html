@@ -1,0 +1,13 @@
+<!-- 
+  We need to use a gloable HTML page to listen for toolbar item taps
+  see - https://developer.apple.com/library/content/documentation/Tools/Conceptual/SafariExtensionGuide/AddingButtonstotheMainSafariToolbar/AddingButtonstotheMainSafariToolbar.html
+-->
+
+<script>
+  // When the toolbar item is tapped, add the bookmarklet JS
+  safari.application.addEventListener("command", function(event) {
+    const window = event.target.browserWindow
+    const tab = window.activeTab
+    tab.page.dispatchMessage("bookmarklet", {});
+  }, false);
+</script>
